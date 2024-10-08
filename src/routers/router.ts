@@ -163,6 +163,7 @@ export type SwapOptionsUniversalRouter = UniversalRouterSwapOptions & {
   type: SwapType.UNIVERSAL_ROUTER;
   version: UniversalRouterVersion;
   simulate?: { fromAddress: string };
+  useRouterBalance?: boolean;
 };
 
 // Swap options for router-sdk and SwapRouter02.

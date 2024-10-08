@@ -46,6 +46,7 @@ export class Quote extends BaseCommand {
     enableFeeOnTransferFeeFetching: flags.boolean({ required: false, default: false }),
     requestBlockNumber: flags.integer({ required: false }),
     gasToken: flags.string({ required: false }),
+    useRouterBalance: flags.boolean({ required: false, default: false }),
   };
 
   async run() {
@@ -78,7 +79,8 @@ export class Quote extends BaseCommand {
       debugRouting,
       enableFeeOnTransferFeeFetching,
       requestBlockNumber,
-      gasToken
+      gasToken,
+      useRouterBalance
     } = flags;
 
     const topNSecondHopForTokenAddress = new MapWithLowerCaseKey();
@@ -146,7 +148,8 @@ export class Quote extends BaseCommand {
             recipient,
             slippageTolerance: new Percent(5, 100),
             simulate: simulate ? { fromAddress: recipient } : undefined,
-            version: UniversalRouterVersion.V2_0
+            version: UniversalRouterVersion.V2_0,
+            useRouterBalance
           }
           : undefined,
         {
